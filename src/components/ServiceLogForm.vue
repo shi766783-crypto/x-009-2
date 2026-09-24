@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, watch } from 'vue';
 import { serviceTypes } from '../constants/categories';
+import { getTodayInputDate } from '../utils/date';
 import { fileToBase64 } from '../utils/items';
 
 const props = defineProps({
@@ -12,7 +13,7 @@ const props = defineProps({
 const emit = defineEmits(['save', 'select']);
 
 const form = reactive({
-  date: new Date().toISOString().slice(0, 10),
+  date: getTodayInputDate(),
   type: '维修',
   issue: '',
   resolution: '',
@@ -40,7 +41,7 @@ function submit() {
   if (!props.selectedId) return;
   emit('save', props.selectedId, { ...form });
   Object.assign(form, {
-    date: new Date().toISOString().slice(0, 10),
+    date: getTodayInputDate(),
     type: '维修',
     issue: '',
     resolution: '',

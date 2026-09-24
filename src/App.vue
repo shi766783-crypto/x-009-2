@@ -8,6 +8,7 @@ import ProfilePanel from './components/ProfilePanel.vue';
 import RankingPanel from './components/RankingPanel.vue';
 import ServiceLogForm from './components/ServiceLogForm.vue';
 import { useInventoryStore } from './stores/useInventoryStore';
+import { getTodayInputDate } from './utils/date';
 import { normalizeItem } from './utils/items';
 
 const store = useInventoryStore();
@@ -29,7 +30,7 @@ function createItem() {
   editingItem.value = normalizeItem({
     name: '',
     category: '家电',
-    purchaseDate: new Date().toISOString().slice(0, 10),
+    purchaseDate: getTodayInputDate(),
     warrantyMonths: 12,
     status: '正常使用',
     serviceRecords: []
