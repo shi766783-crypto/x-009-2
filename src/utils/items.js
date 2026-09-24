@@ -1,4 +1,4 @@
-import { getWarrantyDaysLeft, getWarrantyEndDate } from './date';
+import { getWarrantyDaysLeft, getWarrantyEndDate, toInputDate } from './date';
 
 export function createId(prefix = 'id') {
   return `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -11,7 +11,7 @@ export function normalizeItem(raw) {
     category: raw.category || '其他',
     brandModel: raw.brandModel?.trim() || '',
     channel: raw.channel?.trim() || '',
-    purchaseDate: raw.purchaseDate || '',
+    purchaseDate: toInputDate(raw.purchaseDate),
     price: Number(raw.price || 0),
     warrantyMonths: Number(raw.warrantyMonths || 0),
     invoicePhoto: raw.invoicePhoto || '',

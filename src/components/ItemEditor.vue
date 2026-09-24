@@ -2,6 +2,7 @@
 import { computed, reactive, watch } from 'vue';
 import { categories, itemStatuses } from '../constants/categories';
 import { fileToBase64, normalizeItem } from '../utils/items';
+import { todayInputDate } from '../utils/date';
 
 const props = defineProps({
   draft: { type: Object, default: null }
@@ -15,7 +16,7 @@ const emptyDraft = () =>
     category: '家电',
     brandModel: '',
     channel: '',
-    purchaseDate: new Date().toISOString().slice(0, 10),
+    purchaseDate: todayInputDate(),
     price: 0,
     warrantyMonths: 12,
     location: '',
